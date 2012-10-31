@@ -44,9 +44,7 @@ class KuinsClient(QtGui.QWidget):
         
         self.setLayout(self.main_vbox)
         self.show()
-
-        self.tray_icon.showMessage(self.tr('miako'), self.tr('connected'))
-
+        
         try:
             info_file = open('info.dat', 'r')
             info_dict = json.load(info_file)
@@ -76,6 +74,7 @@ class KuinsClient(QtGui.QWidget):
         if retcode != 0:
             self.prompt_label.setText('connect failed. invalid username or password.')
             return
+        self.tray_icon.showMessage(self.tr('miako'), self.tr('connected'))
         info_dict = {}
         info_dict['username'] = str(self.username_le.text())
         info_dict['password'] = str(self.password_le.text())
